@@ -21,6 +21,8 @@ import io.flutter.plugin.common.PluginRegistry.Registrar;
 import io.flutter.plugins.localauth.AuthenticationHelper.AuthCompletionHandler;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
+import android.util.Log;
+
 
 /**
  * Flutter plugin providing access to local authentication.
@@ -67,6 +69,7 @@ public class LocalAuthPlugin implements MethodCallHandler, FlutterPlugin, Activi
 
   @Override
   public void onMethodCall(MethodCall call, final Result result) {
+    Log.i("local_auth:debug", "onMethodCall: " + call.method);
     if (call.method.equals("authenticateWithBiometrics")) {
       if (authInProgress.get()) {
         // Apps should not invoke another authentication request while one is in progress,
